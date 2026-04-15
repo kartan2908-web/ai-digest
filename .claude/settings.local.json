@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(article-plan)",
+      "WebSearch",
+      "mcp__ide__getDiagnostics",
+      "Bash(git config:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

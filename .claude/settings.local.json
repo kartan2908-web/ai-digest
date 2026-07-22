@@ -7,7 +7,56 @@
       "Bash(git config:*)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git stash:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro:*)",
+      "Bash(python -c ' *)",
+      "Bash(pip install *)",
+      "Bash(git merge:*)",
+      "Bash(npm ls:*)",
+      "Bash(curl -sL -o /dev/null -w \"%{http_code}\" \"https://rosavtotransport.com\")",
+      "Bash(curl -sL \"https://www.russianatom.ru\" -o /dev/null -w \"%{http_code}\")",
+      "Bash(curl -sL --max-time 15 https://www.google.com/search?q=%D0%BA%D0%B0%D1%80%D1%82%D0%B0+%D1%82%D0%B0%D1%85%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B0+%D0%B7%D0%B0%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B0+%D0%BA%D0%B0%D0%BA+%D1%80%D0%B0%D0%B7%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\")",
+      "Bash(curl -sL --max-time 15 https://zakon-auto.ru/tahograf/karta-zablokirovana -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\")",
+      "Bash(curl -sL --max-time 15 https://avto-praktik.ru/tahograf/karta-tahografa-zablokirovana/ -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" -H 'Accept: text/html')",
+      "Bash(curl -sL --max-time 15 https://online-tahograf.ru/karta-zablokirovana -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -sL --max-time 15 https://tahocard.ru/blog/karta-tahografa-zablokirovana -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -sL --max-time 15 https://karta-tahografa.ru/blog/karta-tahografa-zablokirovana-chto-delat -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -sL --max-time 15 https://rosavtotransport.com/razblokirovka-karty-tahografa/ -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(git rm:*)",
+      "Bash(curl -sL --max-time 15 \"https://avto-praktik.ru/tahograf/zamena-karty-tahografa/\" -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\")",
+      "Bash(curl -sL --max-time 15 \"https://zakon-auto.ru/tahograf/zamena-karty-tahografa\" -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\")",
+      "Bash(npm run:*)",
+      "mcp__filesystem__list_directory",
+      "mcp__tavily__tavily_extract",
+      "mcp__tavily__tavily_search"
+    ]
+  },
+  "enabledMcpjsonServers": ["tavily"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; npx prettier --write \"$f\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/c/Users/user/ai-digest/.claude/hooks/block-dangerous.sh"
+          }
+        ]
+      }
     ]
   }
 }

@@ -1,13 +1,41 @@
 {
   "permissions": {
-    "allow": [
-      "Read",
-      "Write",
-      "Edit"
-    ],
-    "deny": [
-      ".env"
-    ],
+    "allow": ["Read", "Write", "Edit"],
+    "deny": [".env"],
     "ask": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; npx prettier --write \"$f\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/c/Users/user/ai-digest/.claude/hooks/block-dangerous.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/c/Users/user/ai-digest/.claude/hooks/validate-article.sh"
+          }
+        ]
+      }
+    ]
   }
 }
